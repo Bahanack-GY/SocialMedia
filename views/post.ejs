@@ -1,0 +1,20 @@
+<%- include("partials/header") %>
+<div class="content container">
+    <h1>Nouveau post</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="picture">Image:</label>
+          <input type="file" id="picture" name="picture" accept="image/*" required>
+        </div>
+        <div class="form-group">
+          <label for="caption">C'est quoi la ref:</label>
+          <textarea id="caption" name="caption" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="hashtags">Hashtags:</label>
+          <input type="text" id="hashtags" name="hashtags" placeholder="Entrer le hashtag de la ref">
+        </div>
+        <button type="submit">Partager</button>
+      </form>
+</div>
+<%- include("partials/footer") %>

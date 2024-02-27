@@ -1,0 +1,59 @@
+<!-- card.ejs -->
+<% if (picturePath) { %>
+<div class="feeds container">
+    <div class="feed">
+        <div class="head">
+            <div class="user">
+                <div class="profile-picture">
+                    <img src="img/pp.jpg" alt="">
+                </div>
+                <div class="info">
+                    <h3>Georges Yvan</h3> <!--Change by user name with ejs-->
+                    <small>Yaounde, 15 minutes Ago</small> <!--Change with users address and time-->
+                </div>   
+            </div>
+            <span class="edit">
+                <i class="ri-more-line"></i>
+            </span>
+        </div>
+
+        
+        <div class="photo">
+            <!-- Display the uploaded image if available -->
+            <img src="<%= picturePath %>"> <!--Change with users image-->
+        </div>
+        
+        
+        <div class="action-buttons">
+            <div class="interaction-buttons">
+                <i class="ri-heart-3-line"></i>
+                <i class="ri-chat-3-line"></i>
+                <i class="ri-share-line"></i>
+            </div>
+            <div class="bookmark">
+                <i class="ri-bookmark-line"></i>
+            </div>
+        </div>
+        <div class="liked-by">
+            <span>
+                <img src="img/pp.jpg" alt="">
+            </span>
+            <span>
+                <img src="img/pp.jpg" alt="">
+            </span>
+            <span>
+                <img src="img/pp.jpg" alt="">
+            </span>
+            <p>Liked by <b>Allan, Iv, Chantal</b> and 2,3M others</p>
+        </div>
+        <div class="caption">
+            <p><b>Georges Yvan</b> <%= caption %> <span class="harsh-tag">
+                #<%= hashtags %>
+            </span> </p> <!--Change by users caption-->
+        </div>
+        <div class="comments text-muted">
+            view all 393k comments   <!--Add the number of comments count-->
+        </div>
+    </div>
+</div>
+<% } %>
