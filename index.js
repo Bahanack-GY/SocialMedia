@@ -2,7 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import multer from 'multer';
 import mongoose from 'mongoose';
-import usr_post from './models/usr_post'
+import usr_post from './models/usr_post.js';
+
 
 const app = express();
 const port = 3000;
@@ -54,12 +55,12 @@ app.post("/upload", async(req, res) => {
         res.send('Error uploading file.');
       } else {
         // Access form fields
-        const caption = req.body.caption;
-        const hashtags = req.body.hashtags;
+         caption = req.body.caption;
+         hashtags = req.body.hashtags;
         // Access uploaded file details
         const pictureFileName = req.file.filename;
-        const picturePath = `/img/uploads/${pictureFileName}`
-        const new_usr_post = await usr_post.create({
+         picturePath = `/img/uploads/${pictureFileName}`
+         const new_usr_post = await usr_post.create({
           caption: caption,
           hastags: hashtags,
           picturePath: picturePath,

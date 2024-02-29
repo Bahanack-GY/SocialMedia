@@ -21,4 +21,4 @@ const usr_post_schema = mongoose.Schema(
 
 const new_post = mongoose.model('new_post', usr_post_schema);
 
-module.export = new_post;
+export default new_post;
