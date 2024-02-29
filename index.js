@@ -49,29 +49,34 @@ app.get("/post",(req,res) =>{
 });
 // Handle form submission and file upload
 app.post("/upload", async(req, res) => {
-    upload(req, res, async(err) => {
+  upload(req, res, async(err) => {
       if(err) {
-        console.error(err);
-        res.send('Error uploading file.');
-      } else {
-        // Access form fields
-         caption = req.body.caption;
-         hashtags = req.body.hashtags;
-        // Access uploaded file details
-        const pictureFileName = req.file.filename;
-         picturePath = `/img/uploads/${pictureFileName}`
-         const new_usr_post = await usr_post.create({
-          caption: caption,
-          hastags: hashtags,
-          picturePath: picturePath,
-        })
-        // Perform further processing (e.g., save to database)
-        // For now, just render the index page with the new data
-        res.render("index", { picturePath, caption, hashtags });
+          console.error(err);
+          return res.send('Error uploading file.');
       }
-    });
-  });
+      
+      // Access form fields and uploaded file details
+      const caption = req.body.caption;
+      const hashtags = req.body.hashtags;
+      const pictureFileName = req.file.filename;
+      const picturePath = `/img/uploads/${pictureFileName}`;
 
+      try {
+          // Create a new user post in the database
+          const newPost = await usr_post.create({
+              caption: caption,
+              hashtags: hashtags,
+              picturePath: picturePath,
+          });
+
+          // Render the index page with the new data
+          res.render("index", { picturePath, caption, hashtags });
+      } catch (error) {
+          console.error(error);
+          res.status(500).send('Internal Server Error');
+      }
+  });
+});
 
 mongoose.connect(uri)
 .then(()=>{
